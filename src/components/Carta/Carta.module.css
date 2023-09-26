@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;500&display=swap');
+
+.container {
+  display: grid;
+  grid-template-rows: repeat(3, auto);
+  height: 450px;
+  min-height: 450px;
+  min-width: 300px;
+  width: 300px;
+  box-shadow: 4px 4px 7px -5px rgba(0, 0, 0, 0.56);
+  background-color: #fff4ca;
+  margin: 20px 60px;
+  border-radius: 20px;
+  background-size: 100% 100%;
+  position: relative;
+  background-repeat: no-repeat;
+  font-weight: 600;
+  text-shadow:
+  -1px -1px 0 #000, /* Sombra superior esquerda */
+  1px -1px 0 #000,  /* Sombra superior direita */
+  -1px 1px 0 #000,  /* Sombra inferior esquerda */
+  1px 1px 0 #000; 
+}
+
+.container * {
+  min-width: 0px;
+  /* place-self: center; */
+}
+
+.fotoDIV {
+  height: 240px;
+  width: 185px;
+  object-fit: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  place-items: center;
+  border: 1px solid black;
+  border-radius: 100px;
+  position: relative;
+  overflow: hidden;
+  place-self: center;
+}
+
+.foto {
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+}
+
+.ataque, .vida {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  place-items: center;
+  position: relative;
+  height: 60px;
+}
+
+.stat {
+  position: absolute;
+  top: 0;
+  left: 100;
+  z-index: 1;
+  font-weight: 500;
+  font-size: 40px;
+}
+
+.Sword, .Heart {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+
+.campoTextos {
+  width: 100%;
+  place-self: center;
+  justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
