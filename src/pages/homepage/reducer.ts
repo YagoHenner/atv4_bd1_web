@@ -4,7 +4,7 @@ import { CARTA } from "../../assets/types";
 
 
 export interface INITIAL_STATE_TYPE {
-    cartaInsert: CARTA;
+    carta: CARTA;
     modalDelete: MODAL_CRUD;
     modalInsert: MODAL_CRUD;
 }
@@ -17,7 +17,7 @@ const MODAL_INITIAL = {
 export const INITIAL_STATE: INITIAL_STATE_TYPE = {
     modalDelete: MODAL_INITIAL,
     modalInsert: MODAL_INITIAL,
-    cartaInsert: {
+    carta: {
         nome: "",
         ataque: 0,
         vida: 0
@@ -38,6 +38,7 @@ export const ACTION_CASES = {
     MODAL: '0',
     CLOSE_MODAL: '1',
     INPUT: '2',
+    SELECTED_CARD: '3',
 }
 
 export const reducer = (state: INITIAL_STATE_TYPE, action: ReducerActions) => {
@@ -57,11 +58,16 @@ export const reducer = (state: INITIAL_STATE_TYPE, action: ReducerActions) => {
             console.log(action.payload)
             return {
                 ...state,
-                cartaInsert: {
-                    ...state.cartaInsert,
+                carta: {
+                    ...state.carta,
                     [action.payload.name]: action.payload.value
                 },
             };
+            case ACTION_CASES.SELECTED_CARD:
+                return {
+                    ...state,
+                    carta: action.payload,
+                };
         default:
           return state;
       }

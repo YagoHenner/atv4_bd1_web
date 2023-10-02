@@ -1,35 +1,40 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { ModalProps } from '../../assets/interfaces';
 import api from '../../services/api';
 import React from 'react';
+import { useForm } from 'react-hook-form';
 
-export default function ModalDelete({
-  open,
+export default function ModalUpdate({
   rota,
   title,
-  body,
   children,
+  body,
   onClose,
   onSubmit,
 }: ModalProps) {
-  const refDelete = useRef<HTMLDialogElement>(null);
+  const refUpdate = useRef<HTMLDialogElement>(null);
 
   const handleOpen = () => {
     console.log('shoveit');
-    if (refDelete.current) {
-      refDelete.current.showModal();
+    if (refUpdate.current) {
+      refUpdate.current.showModal();
+    }
+  };
+  const submit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    // const response = await api.post(rota, body);
+    console.log(body);
+    console.log('submit');
+    if (refUpdate.current) {
+      refUpdate.current.close();
+      onClose();
     }
   };
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const response = await api.delete(rota, body);
-    onClose();
-  };
-
   const handleClose = () => {
-    if (refDelete.current) {
-      refDelete.current.close();
+    if (refUpdate.current) {
+      refUpdate.current.close();
       onClose();
     }
   };
@@ -37,24 +42,23 @@ export default function ModalDelete({
   return (
     <React.Fragment>
       <button className="standardbutton" onClick={handleOpen}>
-        Deletar
+        Alterar
       </button>
-      <dialog ref={refDelete}>
-        <h2>{title}</h2>
-        <p>Tem certeza de que deseja deletar estes dados:</p>
-        {JSON.stringify(body)}
-        <form onSubmit={handleSubmit}>
+      <dialog ref={refUpdate}>
+        <h2>Atualizar {title}</h2>
+        <form onSubmit={submit}>
+          {children}
           <button
             className="invertedbutton"
-            formMethod="dialog"
             type="button"
+            formMethod="dialog"
             onClick={handleClose}
           >
             Cancelar
           </button>
 
           <button className="invertedbutton" type="submit">
-            Deletar
+            Atualizar
           </button>
         </form>
       </dialog>

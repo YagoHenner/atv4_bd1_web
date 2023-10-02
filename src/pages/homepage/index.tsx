@@ -17,6 +17,8 @@ import {
 } from './reducer';
 import React from 'react';
 import ModalInsert from '../../components/ModalInsert';
+import ModalUpdate from '../../components/ModalUpdate';
+import InputsCarta from './inputsCarta';
 
 export default function Home() {
   const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
@@ -40,12 +42,8 @@ export default function Home() {
     });
   };
 
-  const closeModal = (modal: string) => {
+  const closeModal = () => {
     // await refetch(cartas);
-    dispatch({
-      type: ACTION_CASES.MODAL,
-      payload: { modal: modal, value: { open: false, body: null } },
-    });
     console.log('fechou homepage');
   };
   // const getCartas = async () => {
@@ -53,40 +51,21 @@ export default function Home() {
   //   return data.data;
   // };
   // const { data: cartas, isLoading, refetch } = useQuery<CARTA>('cartas', getCartas);
+
   return (
     <PageTemplate title="CARTAS">
       <React.Fragment>
         <ModalInsert
+          open={state.modalInsert.open}
           title={'Carta'}
           rota={'/carta'}
-          body={state.cartaInsert}
-          onClose={() => closeModal(MODAL_REDUCER.INSERT)}
+          body={state.carta}
+          onClose={closeModal}
         >
-          <label htmlFor="nome">Nome</label>
-          <input
-            id="nome"
-            type="text"
-            name="nome"
-            value={state.cartaInsert.nome}
-            onChange={handleChange}
-          ></input>
-          <label htmlFor="ataque">Ataque</label>
-          <input
-            id="ataque"
-            type="number"
-            name="ataque"
-            value={state.cartaInsert.ataque}
-            onChange={handleChange}
-          ></input>
-          <label htmlFor="vida">Vida</label>
-          <input
-            id="vida"
-            type="number"
-            name="vida"
-            placeholder="Vida"
-            value={state.cartaInsert.vida}
-            onChange={handleChange}
-          ></input>
+          <InputsCarta
+            carta={state.carta}
+            handleChange={handleChange}
+          ></InputsCarta>
         </ModalInsert>
         {cartas.map((item: CARTA) => (
           <div key={`carta-${item.id}`} className={styles.divCarta}>
@@ -96,21 +75,25 @@ export default function Home() {
               ataque={item.ataque}
               vida={item.vida}
             ></Carta>
-            <button
-              className="standardbutton"
-              onClick={() => handleModalDelete(item)}
+            <ModalUpdate
+              title={'Carta'}
+              body={item}
+              rota={`/updateCarta/${item.id}`}
+              onClose={closeModal}
             >
-              Deletar
-            </button>
+              <InputsCarta
+                carta={item}
+                handleChange={handleChange}
+              ></InputsCarta>
+            </ModalUpdate>
+            <ModalDelete
+              title={'Carta'}
+              body={item}
+              rota={`/deleteCarta/${item.id}`}
+              onClose={closeModal}
+            ></ModalDelete>
           </div>
         ))}
-        <ModalDelete
-          title={'Deletar carta'}
-          rota={'/deleteCard'}
-          open={state.modalDelete.open}
-          body={state.modalDelete.body}
-          onClose={() => closeModal(MODAL_REDUCER.DELETE)}
-        ></ModalDelete>
       </React.Fragment>
     </PageTemplate>
   );
