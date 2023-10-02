@@ -1,17 +1,8 @@
 import { Heart, Sword } from '@phosphor-icons/react';
 import styles from './Carta.module.css';
+import { CartaProps } from '../../assets/interfaces';
 
-export default function Carta({
-  foto,
-  nome,
-  ataque,
-  vida,
-}: {
-  foto: string | undefined;
-  nome: string;
-  ataque: number;
-  vida: number;
-}) {
+export default function Carta({ foto, nome, ataque, vida }: CartaProps) {
   return (
     <div className={styles.container}>
       <div className={styles.fotoDIV}>

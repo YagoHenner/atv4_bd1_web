@@ -1,5 +1,5 @@
 export type CARTA = {
-    id: number,
+    id?: number,
     nome: string,
     tipo?: string,
     descricao?: string,
