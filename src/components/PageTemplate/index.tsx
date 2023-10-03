@@ -1,4 +1,5 @@
 import { PageTemplateProps } from '../../assets/interfaces';
+import BotoesGuia from '../BotesGuia';
 import styles from './PageTemplate.module.css';
 import { motion } from 'framer-motion';
 
@@ -29,6 +30,7 @@ export default function PageTemplate({ title, children }: PageTemplateProps) {
         <div className={styles.bar}>
           <div className={styles.title}>{title}</div>
         </div>
+        <BotoesGuia></BotoesGuia>
         <motion.div
           initial="initial"
           animate="in"
