@@ -1,6 +1,9 @@
 import PageTemplate from '../../components/PageTemplate';
 import React from 'react';
 import ModalInsert from '../../components/ModalInsert';
+import TableMinimizavel from '../../components/TableMinimizavel';
+import { Listagem, columns } from './tabelaUtils';
+import { jogadores } from '../../db/Jogadores';
 
 export default function Jogadores() {
   const closeModal = () => {
@@ -17,12 +20,17 @@ export default function Jogadores() {
     <PageTemplate title="CARTAS">
       <React.Fragment>
         <ModalInsert
-          //   open={state.modalInsert.open}
           title={'Jogador'}
           rota={'/addPlayer'}
           //   body={state.carta}
           onClose={closeModal}
         />
+        <TableMinimizavel
+          columns={columns}
+          rows={jogadores}
+          Function={Listagem}
+          inicialSort={'nome'}
+        ></TableMinimizavel>
       </React.Fragment>
     </PageTemplate>
   );

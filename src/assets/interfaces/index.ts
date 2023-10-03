@@ -1,5 +1,7 @@
+import { CARTA, JOGADOR } from "../types";
+
 export interface PageTemplateProps {
-    title?: string;
+    title: string;
     children: JSX.Element | JSX.Element[];
 }
 
@@ -10,15 +12,6 @@ export interface CartaProps{
     vida: number;
   }
 
-export interface CrudProps {
-    rotaInsert: string;
-    rotaDelete: string;
-    rotaUpdate: string;
-    rotaRead: string;
-    bodyInsert: any;
-    bodyDelete: any;
-    bodyUpdate: any;
-}
 
 export interface MODAL_CRUD {
     open: boolean,

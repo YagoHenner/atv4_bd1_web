@@ -1,8 +1,10 @@
 .divCarta {
     display: flex;
     flex-direction: column;
-    height: 500px;
+    justify-content: center;
+    align-items: center;
+    height: 600px;
     min-height: 550px;
     min-width: 350px;
-    width: 350px;
+    width: 400px;
 }

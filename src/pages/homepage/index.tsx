@@ -67,33 +67,35 @@ export default function Home() {
             handleChange={handleChange}
           ></InputsCarta>
         </ModalInsert>
-        {cartas.map((item: CARTA) => (
-          <div key={`carta-${item.id}`} className={styles.divCarta}>
-            <Carta
-              foto={bota}
-              nome={item.nome}
-              ataque={item.ataque}
-              vida={item.vida}
-            ></Carta>
-            <ModalUpdate
-              title={'Carta'}
-              body={item}
-              rota={`/updateCarta/${item.id}`}
-              onClose={closeModal}
-            >
-              <InputsCarta
-                carta={item}
-                handleChange={handleChange}
-              ></InputsCarta>
-            </ModalUpdate>
-            <ModalDelete
-              title={'Carta'}
-              body={item}
-              rota={`/deleteCarta/${item.id}`}
-              onClose={closeModal}
-            ></ModalDelete>
-          </div>
-        ))}
+        <div className="flex-row ">
+          {cartas.map((item: CARTA) => (
+            <div key={`carta-${item.id}`} className={styles.divCarta}>
+              <Carta
+                foto={bota}
+                nome={item.nome}
+                ataque={item.ataque}
+                vida={item.vida}
+              ></Carta>
+              <ModalUpdate
+                title={'Carta'}
+                body={item}
+                rota={`/updateCarta/${item.id}`}
+                onClose={closeModal}
+              >
+                <InputsCarta
+                  carta={item}
+                  handleChange={handleChange}
+                ></InputsCarta>
+              </ModalUpdate>
+              <ModalDelete
+                title={'Carta'}
+                body={item}
+                rota={`/deleteCarta/${item.id}`}
+                onClose={closeModal}
+              ></ModalDelete>
+            </div>
+          ))}
+        </div>
       </React.Fragment>
     </PageTemplate>
   );
