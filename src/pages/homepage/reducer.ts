@@ -7,6 +7,7 @@ export interface INITIAL_STATE_TYPE {
     carta: CARTA;
     modalDelete: MODAL_CRUD;
     modalInsert: MODAL_CRUD;
+    cartaSelecionada: CARTA;
 }
 
 const MODAL_INITIAL = {
@@ -18,6 +19,11 @@ export const INITIAL_STATE: INITIAL_STATE_TYPE = {
     modalDelete: MODAL_INITIAL,
     modalInsert: MODAL_INITIAL,
     carta: {
+        nome: "",
+        ataque: 0,
+        vida: 0
+    },
+    cartaSelecionada: {
         nome: "",
         ataque: 0,
         vida: 0
@@ -37,8 +43,9 @@ export const MODAL_REDUCER: MODAL_REDUCER_TYPE = {
 export const ACTION_CASES = {
     MODAL: '0',
     CLOSE_MODAL: '1',
-    INPUT: '2',
-    SELECTED_CARD: '3',
+    INPUT_CARTA: '2',
+    INPUT_CARTA_SELECIONADA: '3',
+    SELECTED_CARD: '4',
 }
 
 export const reducer = (state: INITIAL_STATE_TYPE, action: ReducerActions) => {
@@ -54,7 +61,7 @@ export const reducer = (state: INITIAL_STATE_TYPE, action: ReducerActions) => {
                 ...state,
                 [action.payload.modal]: MODAL_INITIAL
             };
-          case ACTION_CASES.INPUT:
+          case ACTION_CASES.INPUT_CARTA:
             console.log(action.payload)
             return {
                 ...state,
@@ -63,10 +70,19 @@ export const reducer = (state: INITIAL_STATE_TYPE, action: ReducerActions) => {
                     [action.payload.name]: action.payload.value
                 },
             };
+            case ACTION_CASES.INPUT_CARTA_SELECIONADA:
+                console.log(action.payload)
+                return {
+                    ...state,
+                    cartaSelecionada: {
+                        ...state.cartaSelecionada,
+                        [action.payload.name]: action.payload.value
+                    },
+                };
             case ACTION_CASES.SELECTED_CARD:
                 return {
                     ...state,
-                    carta: action.payload,
+                    cartaSelecionada: action.payload,
                 };
         default:
           return state;

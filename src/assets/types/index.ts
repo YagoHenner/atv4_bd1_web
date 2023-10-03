@@ -1,7 +1,7 @@
 export type CARTA = {
     id?: number,
     nome: string,
-    tipo?: string,
+    tipo?: number,
     descricao?: string,
     ataque: number,
     vida: number,

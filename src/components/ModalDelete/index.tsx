@@ -15,7 +15,6 @@ export default function ModalDelete({
   const refDelete = useRef<HTMLDialogElement>(null);
 
   const handleOpen = () => {
-    console.log('shoveit');
     if (refDelete.current) {
       refDelete.current.showModal();
     }

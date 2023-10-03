@@ -24,6 +24,7 @@ export  interface ModalProps {
     rota: string;
     body?: any;
     children?: JSX.Element | JSX.Element[];
+    onOpen?: () => void;
     onClose: () => void;
     onSubmit?: (data: any) => void;
   }

@@ -11,11 +11,14 @@ export default function ModalUpdate({
   body,
   onClose,
   onSubmit,
+  onOpen,
 }: ModalProps) {
   const refUpdate = useRef<HTMLDialogElement>(null);
 
   const handleOpen = () => {
-    console.log('shoveit');
+    if (onOpen) {
+      onOpen();
+    }
     if (refUpdate.current) {
       refUpdate.current.showModal();
     }
@@ -23,7 +26,7 @@ export default function ModalUpdate({
   const submit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    // const response = await api.post(rota, body);
+    const response = await api.put(rota, body);
     console.log(body);
     console.log('submit');
     if (refUpdate.current) {
