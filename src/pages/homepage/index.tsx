@@ -4,17 +4,10 @@ import { useQuery } from 'react-query';
 import api from '../../services/api';
 import { CARTA } from '../../assets/types';
 import styles from './Homepage.module.css';
-// import { cartas } from '../../db/Cartas';
 import PageTemplate from '../../components/PageTemplate';
-import { useReducer, useState } from 'react';
+import { useReducer } from 'react';
 import ModalDelete from '../../components/ModalDelete';
-import {
-  ACTION_CASES,
-  INITIAL_STATE,
-  MODAL_REDUCER,
-  MODAL_REDUCER_TYPE,
-  reducer,
-} from './reducer';
+import { ACTION_CASES, INITIAL_STATE, MODAL_REDUCER, reducer } from './reducer';
 import React from 'react';
 import ModalInsert from '../../components/ModalInsert';
 import ModalUpdate from '../../components/ModalUpdate';
