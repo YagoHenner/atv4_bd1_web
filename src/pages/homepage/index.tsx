@@ -85,7 +85,7 @@ export default function Home() {
         <ModalInsert
           open={state.modalInsert.open}
           title={'Carta'}
-          rota={'/carta'}
+          rota={'/createCard'}
           body={state.carta}
           onClose={closeModal}
         >

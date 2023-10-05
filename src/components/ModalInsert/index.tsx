@@ -23,7 +23,7 @@ export default function ModalInsert({
   const submit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    // const response = await api.post(rota, body);
+    const response = await api.post(rota, body);
     console.log(body);
     console.log('submit');
     if (refInsert.current) {
