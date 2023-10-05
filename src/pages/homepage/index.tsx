@@ -103,6 +103,7 @@ export default function Home() {
                   nome={item.nome}
                   ataque={item.ataque}
                   vida={item.vida}
+                  custo_de_mana={item.custo_de_mana}
                 ></Carta>
                 <ModalUpdate
                   title={'Carta'}

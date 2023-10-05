@@ -1,10 +1,20 @@
-import { Heart, Sword } from '@phosphor-icons/react';
+import { Heart, Sword, Drop } from '@phosphor-icons/react';
 import styles from './Carta.module.css';
 import { CartaProps } from '../../assets/interfaces';
 
-export default function Carta({ foto, nome, ataque, vida }: CartaProps) {
+export default function Carta({
+  foto,
+  nome,
+  ataque,
+  vida,
+  custo_de_mana,
+}: CartaProps) {
   return (
     <div className={styles.container}>
+      <div className={styles.mana}>
+        <div className={styles.stat}>{custo_de_mana}</div>
+        <Drop size={52} color="#237bcd" weight="fill" />
+      </div>
       <div className={styles.fotoDIV}>
         <img
           className={styles.foto}
