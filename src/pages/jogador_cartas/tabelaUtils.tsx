@@ -58,13 +58,29 @@ export function Listagem(props: { row: JOGADOR }) {
                       <TableCell>
                         <b>Nome</b>
                       </TableCell>
+                      <TableCell>
+                        <b>Descrição</b>
+                      </TableCell>
+                      <TableCell>
+                        <b>Ataque</b>
+                      </TableCell>
+                      <TableCell>
+                        <b>Vida</b>
+                      </TableCell>
+                      <TableCell>
+                        <b>Custo de Mana</b>
+                      </TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
                     {row.cartas &&
-                      row.cartas.map((carta) => (
+                      row.cartas.map(carta => (
                         <TableRow key={`${carta.nome}-${carta.id}-${row.id}`}>
                           <TableCell>{carta.nome}</TableCell>
+                          <TableCell>{carta.descricao}</TableCell>
+                          <TableCell>{carta.ataque}</TableCell>
+                          <TableCell>{carta.vida}</TableCell>
+                          <TableCell>{carta.custo_de_mana}</TableCell>
                         </TableRow>
                       ))}
                   </TableBody>
