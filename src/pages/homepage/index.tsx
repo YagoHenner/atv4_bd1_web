@@ -11,7 +11,7 @@ import { ACTION_CASES, INITIAL_STATE, MODAL_REDUCER, reducer } from './reducer';
 import React from 'react';
 import ModalInsert from '../../components/ModalInsert';
 import ModalUpdate from '../../components/ModalUpdate';
-import InputsCarta from './inputsCarta';
+import InputsCarta from '../../components/InputsCarta';
 
 export default function Home() {
   const [state, dispatch] = useReducer(reducer, INITIAL_STATE);

@@ -22,7 +22,8 @@ export default function ModalDelete({
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const response = await api.delete(rota, body);
+
+    const response = await api.delete(rota);
     onClose();
   };
 

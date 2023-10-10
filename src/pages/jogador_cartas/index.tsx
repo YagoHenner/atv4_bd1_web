@@ -1,5 +1,5 @@
 import PageTemplate from '../../components/PageTemplate';
-import React from 'react';
+import React, { useReducer } from 'react';
 import ModalInsert from '../../components/ModalInsert';
 import TableMinimizavel from '../../components/TableMinimizavel';
 import { columns } from './tabelaUtils';
@@ -18,10 +18,36 @@ import {
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import api from '../../services/api';
-import { JOGADOR } from '../../assets/types';
+import { CARTA, JOGADOR } from '../../assets/types';
 import { useQuery } from 'react-query';
+import InputsCarta from '../../components/InputsCarta';
+import { ACTION_CASES, INITIAL_STATE, MODAL_REDUCER, reducer } from './reducer';
+import ModalDelete from '../../components/ModalDelete';
+import AutocompleteComponent from '../../components/Autocomplete';
 
 export default function Jogador_Cartas() {
+  const getCartas = async () => {
+    const data = await api.get('/cards');
+    return data.data;
+  };
+  const { data: cartas } = useQuery<any>('cartas', getCartas);
+
+  const getJogadores = async () => {
+    const data = await api.get('/players');
+    return data.data;
+  };
+  const { data: jogadores } = useQuery<any>('jogadores', getJogadores);
+  const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
+
+  const handleModalDelete = (body: any) => {
+    dispatch({
+      type: ACTION_CASES.MODAL,
+      payload: {
+        modal: MODAL_REDUCER.DELETE,
+        value: { open: true, body: body },
+      },
+    });
+  };
   const closeModal = async () => {
     await refetch(jogador_carta);
     console.log('fechou homepage');
@@ -35,6 +61,8 @@ export default function Jogador_Cartas() {
     isLoading,
     refetch,
   } = useQuery<any>('jogador_carta', getJogador_Carta);
+
+  console.log(jogadores);
 
   function Listagem(props: { row: JOGADOR }) {
     const { row } = props;
@@ -92,6 +120,12 @@ export default function Jogador_Cartas() {
                             <TableCell>{carta.ataque}</TableCell>
                             <TableCell>{carta.vida}</TableCell>
                             <TableCell>{carta.custo_de_mana}</TableCell>
+                            <ModalDelete
+                              title={'Carta'}
+                              body={{ jogador_id: row.id, carta_id: carta.id }}
+                              rota={`/removeCardFromPlayer/${row.id}/${carta.id}`}
+                              onClose={closeModal}
+                            ></ModalDelete>
                           </TableRow>
                         ))}
                     </TableBody>
@@ -105,15 +139,61 @@ export default function Jogador_Cartas() {
     );
   }
 
+  const handleChangeCarta = (carta: CARTA) => {
+    dispatch({
+      type: ACTION_CASES.SELECTED_CARD,
+      payload: carta,
+    });
+  };
+
+  const handleChangeJogador = (jogador: JOGADOR) => {
+    dispatch({
+      type: ACTION_CASES.SELECTED_JOGADOR,
+      payload: jogador,
+    });
+  };
+
   return (
-    <PageTemplate title="CARTAS">
+    <PageTemplate title="JOGADOR_CARTAS">
       <React.Fragment>
         <ModalInsert
           title={'Carta a um Jogador'}
-          rota={'/addPlayer'}
-          //   body={state.carta}
+          rota={'/addCardToPlayer'}
+          body={{
+            jogador_id: state.jogador.id,
+            carta_id: state.cartaSelecionada.id,
+          }}
           onClose={closeModal}
-        />
+        >
+          <AutocompleteComponent
+            chave={1}
+            renderOption={(props, option) => {
+              return (
+                <li {...props} key={`carta-${option.id}`}>
+                  {option.nome}
+                </li>
+              );
+            }}
+            label={'Cartas'}
+            set={handleChangeCarta}
+            arrayData={cartas}
+            getOptionLabel={option => option.nome}
+          />
+          <AutocompleteComponent
+            chave={1}
+            renderOption={(props, option) => {
+              return (
+                <li {...props} key={`carta-${option.id}`}>
+                  {option.nome}
+                </li>
+              );
+            }}
+            label={'Jogadores'}
+            set={handleChangeJogador}
+            arrayData={jogadores}
+            getOptionLabel={option => option.nome}
+          />
+        </ModalInsert>
         {jogador_carta && (
           <TableMinimizavel
             columns={columns}

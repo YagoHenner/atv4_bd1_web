@@ -44,7 +44,7 @@ export default function ModalInsert({
       <button className="standardbutton" onClick={handleOpen}>
         Inserir
       </button>
-      <dialog ref={refInsert}>
+      <dialog ref={refInsert} style={{ overflow: 'visible' }}>
         <h2>Inserir {title}</h2>
         <form onSubmit={submit}>
           {children}
