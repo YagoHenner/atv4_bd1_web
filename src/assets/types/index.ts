@@ -17,6 +17,7 @@ export type JOGADOR = {
   id?: number;
   nome: string;
   email: string;
+  senha?: string;
   pontuacao?: number;
   divisao?: number;
   ranking_id?: number;

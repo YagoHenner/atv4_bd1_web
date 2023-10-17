@@ -15,4 +15,8 @@ export const columns = [
     id: 'ranking_id',
     label: 'RANKING',
   },
+  {
+    id: 'acoes',
+    label: 'AÇÕES',
+  },
 ];

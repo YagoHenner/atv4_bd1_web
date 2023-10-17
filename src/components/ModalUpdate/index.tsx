@@ -16,10 +16,10 @@ export default function ModalUpdate({
   const refUpdate = useRef<HTMLDialogElement>(null);
 
   const handleOpen = () => {
-    if (onOpen) {
-      onOpen();
-    }
     if (refUpdate.current) {
+      if (onOpen) {
+        onOpen();
+      }
       refUpdate.current.showModal();
     }
   };
