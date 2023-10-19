@@ -65,7 +65,6 @@ export const reducer = (
         [action.payload.modal]: MODAL_INITIAL,
       };
     case ACTION_CASES.INPUT_CARTA:
-      console.log(action.payload);
       return {
         ...state,
         carta: {
@@ -74,7 +73,6 @@ export const reducer = (
         },
       };
     case ACTION_CASES.INPUT_CARTA_SELECIONADA:
-      console.log(action.payload);
       return {
         ...state,
         cartaSelecionada: {

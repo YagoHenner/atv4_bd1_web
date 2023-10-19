@@ -67,7 +67,6 @@ export const reducer = (state: INITIAL_STATE_TYPE, action: ReducerActions) => {
       };
 
     case ACTION_CASES.INPUT_JOGADOR:
-      console.log(action.payload);
       return {
         ...state,
         jogador: {
@@ -81,7 +80,6 @@ export const reducer = (state: INITIAL_STATE_TYPE, action: ReducerActions) => {
         jogadorSelecionado: action.payload,
       };
     case ACTION_CASES.INPUT_SELECTED_JOGADOR:
-      console.log(action.payload);
       return {
         ...state,
         jogadorSelecionado: {

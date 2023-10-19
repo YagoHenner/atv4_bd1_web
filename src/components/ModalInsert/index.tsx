@@ -15,7 +15,6 @@ export default function ModalInsert({
   const refInsert = useRef<HTMLDialogElement>(null);
 
   const handleOpen = () => {
-    console.log('shoveit');
     if (refInsert.current) {
       refInsert.current.showModal();
     }
@@ -24,8 +23,6 @@ export default function ModalInsert({
     event.preventDefault();
 
     const response = await api.post(rota, body);
-    console.log(body);
-    console.log('submit');
     if (refInsert.current) {
       refInsert.current.close();
       onClose();

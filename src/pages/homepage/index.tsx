@@ -24,8 +24,6 @@ export default function Home() {
         value: { open: true, body: body },
       },
     });
-
-    console.log('modal delete ' + state.modalDelete.body);
   };
 
   const handleChangeCarta = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -59,8 +57,6 @@ export default function Home() {
 
   const closeModal = async () => {
     await refetch(cartas);
-
-    console.log('fechou homepage');
   };
   const getCartas = async () => {
     const data = await api.get('/cards');

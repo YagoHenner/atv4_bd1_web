@@ -34,6 +34,15 @@ export default function InputsCarta({ carta, handleChange }: InputsCarta) {
         value={carta.vida}
         onChange={handleChange}
       ></input>
+      <label htmlFor="custo_de_mana">Custo de mana</label>
+      <input
+        id="custo_de_mana"
+        type="number"
+        name="custo_de_mana"
+        placeholder="Custo de mana"
+        value={carta.custo_de_mana}
+        onChange={handleChange}
+      ></input>
     </React.Fragment>
   );
 }

@@ -27,8 +27,6 @@ export default function ModalUpdate({
     event.preventDefault();
 
     const response = await api.put(rota, body);
-    console.log(body);
-    console.log('submit');
     if (refUpdate.current) {
       refUpdate.current.close();
       onClose();

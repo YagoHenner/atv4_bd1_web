@@ -39,7 +39,6 @@ export default function Jogadores() {
   } = useQuery<any>('jogadores', getJogadores);
   const closeModal = async () => {
     await refetch(jogadores);
-    console.log('fechou homepage');
   };
 
   const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
@@ -74,7 +73,6 @@ export default function Jogadores() {
         `/updatePlayer/${state.jogadorSelecionado.id}`,
         state.jogadorSelecionado
       );
-      console.log('submit');
       await refetch(jogadores);
     } catch (error) {
       alert(error);
@@ -162,9 +160,6 @@ export default function Jogadores() {
   return (
     <PageTemplate title="JOGADORES">
       <React.Fragment>
-        <button onClick={() => console.log(state.jogadorSelecionado)}>
-          selecionado
-        </button>
         <ModalFormGeneral
           title={'Atualizar Jogador'}
           forwardedRef={refUpdate}

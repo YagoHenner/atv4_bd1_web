@@ -50,7 +50,6 @@ export default function Jogador_Cartas() {
   };
   const closeModal = async () => {
     await refetch(jogador_carta);
-    console.log('fechou homepage');
   };
   const getJogador_Carta = async () => {
     const data = await api.get('/playersWithCards');
@@ -61,8 +60,6 @@ export default function Jogador_Cartas() {
     isLoading,
     refetch,
   } = useQuery<any>('jogador_carta', getJogador_Carta);
-
-  console.log(jogadores);
 
   function Listagem(props: { row: JOGADOR }) {
     const { row } = props;
