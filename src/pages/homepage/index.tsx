@@ -1,5 +1,5 @@
 import Carta from '../../components/Carta';
-import bota from '../../assets/images/botaHomemAranha.png';
+import warrior from '../../assets/images/warrior-min.jpg';
 import { useQuery } from 'react-query';
 import api from '../../services/api';
 import { CARTA } from '../../assets/types';
@@ -88,7 +88,7 @@ export default function Home() {
             cartas.map((item: CARTA) => (
               <div key={`carta-${item.id}`} className={styles.divCarta}>
                 <Carta
-                  foto={bota}
+                  foto={warrior}
                   nome={item.nome}
                   ataque={item.ataque}
                   vida={item.vida}
